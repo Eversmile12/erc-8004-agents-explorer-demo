@@ -31,12 +31,11 @@ export default function Home() {
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center px-4 text-center">
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-          Discover AI Agents on{" "}
-          <span className="text-cyan-400">ERC-8004</span>
+          <span className="text-cyan-400">ERC-8004</span> Scanner Demo
         </h1>
 
         <p className="mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl">
-          Explore, validate, and interact with AI agents registered on 8004scan
+          A demo app to learn how to build an ERC-8004 agent scanner from scratch
         </p>
 
         {/* Search bar */}

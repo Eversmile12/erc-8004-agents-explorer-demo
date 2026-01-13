@@ -163,7 +163,6 @@ function AgentsContent() {
                             <TableHead>Chain</TableHead>
                             <TableHead>Protocol</TableHead>
                             <TableHead>Owner</TableHead>
-                            <TableHead className="text-center">Active</TableHead>
                             <TableHead className="text-center">X402</TableHead>
                             <TableHead>Created</TableHead>
                             <TableHead className="text-right">Actions</TableHead>
@@ -172,13 +171,13 @@ function AgentsContent() {
                     <TableBody>
                         {isLoading ? (
                             <TableRow>
-                                <TableCell colSpan={8} className="h-32 text-center">
+                                <TableCell colSpan={7} className="h-32 text-center">
                                     <Loader2 className="mx-auto h-6 w-6 animate-spin text-muted-foreground" />
                                 </TableCell>
                             </TableRow>
                         ) : agents.length === 0 ? (
                             <TableRow>
-                                <TableCell colSpan={8} className="h-32 text-center text-muted-foreground">
+                                <TableCell colSpan={7} className="h-32 text-center text-muted-foreground">
                                     No agents found
                                 </TableCell>
                             </TableRow>
@@ -235,13 +234,6 @@ function AgentsContent() {
                                         <span className="font-mono text-sm text-muted-foreground">
                                             {truncateAddress(agent.owner)}
                                         </span>
-                                    </TableCell>
-                                    <TableCell className="text-center">
-                                        {agent.registrationFile?.active ? (
-                                            <span className="text-emerald-400">✓</span>
-                                        ) : (
-                                            <span className="text-muted-foreground">-</span>
-                                        )}
                                     </TableCell>
                                     <TableCell className="text-center">
                                         {agent.registrationFile?.x402support ? (

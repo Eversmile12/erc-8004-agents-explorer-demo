@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Scan } from "lucide-react";
 
@@ -26,9 +25,6 @@ export function Navbar() {
         {/* Right side */}
         <div className="ml-auto flex items-center gap-2">
           <ThemeToggle />
-          <Button variant="outline" size="sm">
-            Login
-          </Button>
         </div>
       </div>
     </header>
