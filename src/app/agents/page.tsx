@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Search, Filter, ExternalLink, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
@@ -13,6 +13,24 @@ import type { Agent } from "@/types/agent";
 import { truncateAddress, getDisplayName, formatDate, getProtocols, PROTOCOL_COLORS } from "@/lib/format";
 
 export default function AgentsPage() {
+    return (
+        <Suspense fallback={<AgentsLoading />}>
+            <AgentsContent />
+        </Suspense>
+    );
+}
+
+function AgentsLoading() {
+    return (
+        <div className="container mx-auto px-4 py-8">
+            <div className="flex items-center justify-center h-64">
+                <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+            </div>
+        </div>
+    );
+}
+
+function AgentsContent() {
     const searchParams = useSearchParams();
     const initialQuery = searchParams.get("q") || "";
 
