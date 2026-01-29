@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { Scan } from "lucide-react";
+import { Scan, Github } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function Navbar() {
   return (
@@ -24,6 +25,16 @@ export function Navbar() {
 
         {/* Right side */}
         <div className="ml-auto flex items-center gap-2">
+          <Button variant="ghost" size="icon" asChild>
+            <a
+              href="https://github.com/Eversmile12/erc-8004-agents-explorer-demo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Github className="h-5 w-5" />
+              <span className="sr-only">GitHub</span>
+            </a>
+          </Button>
           <ThemeToggle />
         </div>
       </div>

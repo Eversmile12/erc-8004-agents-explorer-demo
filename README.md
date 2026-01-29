@@ -1,6 +1,8 @@
 # ERC-8004 Scanner Demo
 
-[ERC-8004 Spec](https://8004.org) · [Registration Guide](https://github.com/erc-8004/best-practices/blob/main/Registration.md) · [Reputation Guide](https://github.com/erc-8004/best-practices/blob/main/Reputation.md) · [Agent0 SDK](https://sdk.ag0.xyz/)
+[ERC-8004](https://8004.org) · [Registration Guide](https://github.com/erc-8004/best-practices/blob/main/Registration.md) · [Reputation Guide](https://github.com/erc-8004/best-practices/blob/main/Reputation.md) · [Agent0 SDK](https://sdk.ag0.xyz/)
+
+[![View Demo](https://img.shields.io/badge/View%20Demo-Live-cyan)](https://erc-8004-agents-explorer-demo.vercel.app/agents)
 
 ---
 
@@ -26,6 +28,10 @@ A demo application for exploring autonomous AI agents registered on the ERC-8004
 ## Getting Started
 
 ```bash
+# Clone the repo
+git clone https://github.com/Eversmile12/erc-8004-agents-explorer-demo.git
+cd erc-8004-agents-explorer-demo
+
 # Install dependencies
 npm install
 
@@ -121,3 +127,7 @@ Learn how to build and register on-chain agents:
 ## License
 
 MIT
+
+---
+
+Built by [Vitto](https://x.com/VittoStack)
