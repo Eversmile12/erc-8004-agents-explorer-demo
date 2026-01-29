@@ -2,7 +2,7 @@
 
 [ERC-8004](https://8004.org) · [Registration Guide](https://github.com/erc-8004/best-practices/blob/main/Registration.md) · [Reputation Guide](https://github.com/erc-8004/best-practices/blob/main/Reputation.md) · [Agent0 SDK](https://sdk.ag0.xyz/)
 
-[![View Demo](https://img.shields.io/badge/View%20Demo-Live-cyan)](https://erc-8004-agents-explorer-demo.vercel.app/agents)
+[![View Demo](https://img.shields.io/badge/View%20Demo-Live-cyan)](https://erc-8004-agents-explorer-demo.vercel.app)
 
 ---
 
