@@ -37,7 +37,18 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          {children}
+          <main className="min-h-[calc(100vh-3.5rem-3rem)]">{children}</main>
+          <footer className="h-12 flex items-center justify-center border-t border-border text-sm text-muted-foreground">
+            Built with 🤖 by the{" "}
+            <a
+              href="https://ai.ethereum.foundation/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-1 underline hover:text-foreground"
+            >
+              Ethereum Foundation AI team
+            </a>
+          </footer>
           <Toaster />
         </ThemeProvider>
       </body>
