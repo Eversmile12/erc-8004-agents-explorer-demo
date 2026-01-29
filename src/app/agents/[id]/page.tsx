@@ -92,7 +92,7 @@ export default function AgentDetailPage() {
 
     const totalFeedback = parseInt(agent.totalFeedback) || 0;
     const totalValidations = agent.stats ? parseInt(agent.stats.totalValidations) || 0 : 0;
-    const averageScore = agent.stats ? parseFloat(agent.stats.averageScore) || 0 : 0;
+    const averageScore = agent.stats ? parseFloat(agent.stats.averageFeedbackValue) || 0 : 0;
 
     return (
         <div className="min-h-screen">
@@ -303,7 +303,7 @@ export default function AgentDetailPage() {
                                                         </div>
                                                         <div className="rounded-lg bg-emerald-500/20 px-3 py-2 text-center">
                                                             <div className="text-lg font-bold text-emerald-400">
-                                                                {review.score}
+                                                                {review.value}
                                                             </div>
                                                             <div className="text-xs text-emerald-400/70">/100</div>
                                                         </div>
@@ -368,7 +368,7 @@ export default function AgentDetailPage() {
                                                 </Badge>
                                             </div>
                                         )}
-                                        {agent.registrationFile?.x402support && (
+                                        {agent.registrationFile?.x402Support && (
                                             <div className="flex items-center justify-between">
                                                 <span className="text-sm text-muted-foreground">X402 SUPPORT</span>
                                                 <Badge className="bg-cyan-500/20 text-cyan-400 border-cyan-500/30">
@@ -399,6 +399,43 @@ export default function AgentDetailPage() {
     );
 }
 
+// Color mappings for Tailwind (dynamic classes don't work)
+const STAT_COLORS = {
+    amber: {
+        border: "border-amber-500/30",
+        bg: "bg-amber-500/5",
+        icon: "text-amber-400",
+    },
+    orange: {
+        border: "border-orange-500/30",
+        bg: "bg-orange-500/5",
+        icon: "text-orange-400",
+    },
+    emerald: {
+        border: "border-emerald-500/30",
+        bg: "bg-emerald-500/5",
+        icon: "text-emerald-400",
+    },
+    cyan: {
+        border: "border-cyan-500/30",
+        bg: "bg-cyan-500/5",
+        icon: "text-cyan-400",
+    },
+} as const;
+
+const ENDPOINT_COLORS = {
+    MCP: {
+        border: "border-emerald-500/30",
+        bg: "bg-emerald-500/5",
+        badge: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
+    },
+    A2A: {
+        border: "border-blue-500/30",
+        bg: "bg-blue-500/5",
+        badge: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+    },
+} as const;
+
 // Helper components
 function StatCard({
     icon: Icon,
@@ -409,15 +446,16 @@ function StatCard({
     small,
 }: {
     icon: React.ElementType;
-    color: string;
+    color: keyof typeof STAT_COLORS;
     value: string | number;
     label: string;
     sublabel?: string;
     small?: boolean;
 }) {
+    const colors = STAT_COLORS[color];
     return (
-        <div className={`rounded-lg border border-${color}-500/30 bg-${color}-500/5 p-4 text-center`}>
-            <Icon className={`mx-auto h-6 w-6 text-${color}-400`} />
+        <div className={`rounded-lg border ${colors.border} ${colors.bg} p-4 text-center`}>
+            <Icon className={`mx-auto h-6 w-6 ${colors.icon}`} />
             <div className={`mt-2 ${small ? "text-sm" : "text-2xl"} font-bold`}>{value}</div>
             <div className="text-xs text-muted-foreground">{label}</div>
             {sublabel && <div className="text-xs text-muted-foreground">{sublabel}</div>}
@@ -426,13 +464,11 @@ function StatCard({
 }
 
 function EndpointCard({ type, endpoint, onCopy }: { type: "MCP" | "A2A"; endpoint: string; onCopy: () => void }) {
-    const colors = type === "MCP" ? "emerald" : "blue";
+    const colors = ENDPOINT_COLORS[type];
     return (
-        <div
-            className={`flex items-center justify-between rounded-lg border border-${colors}-500/30 bg-${colors}-500/5 p-3`}
-        >
+        <div className={`flex items-center justify-between rounded-lg border ${colors.border} ${colors.bg} p-3`}>
             <div>
-                <Badge className={`bg-${colors}-500/20 text-${colors}-400 border-${colors}-500/30 mb-1`}>{type}</Badge>
+                <Badge className={`${colors.badge} mb-1`}>{type}</Badge>
                 <p className="text-sm font-mono">{endpoint}</p>
             </div>
             <Button variant="ghost" size="sm" onClick={onCopy}>

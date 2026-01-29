@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect, useCallback, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Search, Filter, ExternalLink, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
@@ -43,7 +43,7 @@ function AgentsContent() {
     const [hasMore, setHasMore] = useState(false);
     const [perPage, setPerPage] = useState("12");
 
-    const fetchAgents = async (page: number = 1, query?: string) => {
+    const fetchAgents = useCallback(async (page: number = 1, query?: string) => {
         setIsLoading(true);
         const searchTerm = query !== undefined ? query : searchQuery;
         try {
@@ -68,13 +68,13 @@ function AgentsContent() {
         } finally {
             setIsLoading(false);
         }
-    };
+    }, [searchQuery, perPage, sortBy, protocolFilter]);
 
     useEffect(() => {
         fetchAgents(1, searchQuery);
-    }, [sortBy, perPage, protocolFilter, initialQuery]);
+    }, [fetchAgents, searchQuery]);
 
-    const handleSearch = () => fetchAgents(1);
+    const handleSearch = () => fetchAgents(1, searchQuery);
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") handleSearch();
     };
@@ -236,7 +236,7 @@ function AgentsContent() {
                                         </span>
                                     </TableCell>
                                     <TableCell className="text-center">
-                                        {agent.registrationFile?.x402support ? (
+                                        {agent.registrationFile?.x402Support ? (
                                             <span className="text-emerald-400">✓</span>
                                         ) : (
                                             <span className="text-muted-foreground">-</span>

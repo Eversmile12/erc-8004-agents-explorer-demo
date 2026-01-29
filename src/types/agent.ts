@@ -4,7 +4,7 @@ export interface AgentRegistrationFile {
     description: string | null;
     image: string | null;
     active: boolean | null;
-    x402support: boolean | null;
+    x402Support: boolean | null;
     supportedTrusts: string[];
     mcpEndpoint: string | null;
     mcpVersion: string | null;
@@ -36,31 +36,27 @@ export interface Agent {
 // Feedback from users
 export interface Feedback {
     id: string;
-    score: number;
+    value: string;
     tag1: string | null;
     tag2: string | null;
     clientAddress: string;
     createdAt: string;
-    isRevoked: boolean;
     feedbackFile: {
         text: string | null;
-        capability: string | null;
-        skill: string | null;
-        task: string | null;
-        context: string | null;
+        mcpTool: string | null;
+        mcpPrompt: string | null;
+        mcpResource: string | null;
+        a2aSkills: string[];
+        a2aContextId: string | null;
+        a2aTaskId: string | null;
     } | null;
-    responses: {
-        responder: string;
-        responseUri: string | null;
-        createdAt: string;
-    }[];
 }
 
 // Agent statistics
 export interface AgentStats {
     totalFeedback: string;
-    averageScore: string;
-    scoreDistribution: number[];
+    averageFeedbackValue: string;
+    averageValidationScore: string;
     totalValidations: string;
     completedValidations: string;
     lastActivity: string;

@@ -26,7 +26,7 @@ const AGENT_FIELDS = `
     description
     image
     active
-    x402support
+    x402Support
     supportedTrusts
     mcpEndpoint
     mcpTools
@@ -51,7 +51,7 @@ const AGENT_FIELDS_FULL = `
     description
     image
     active
-    x402support
+    x402Support
     supportedTrusts
     mcpEndpoint
     mcpVersion
@@ -121,24 +121,26 @@ const GET_AGENT_WITH_FEEDBACK = gql`
       ${AGENT_FIELDS_FULL}
       feedback(where: { isRevoked: false }, orderBy: createdAt, orderDirection: desc, first: $feedbackFirst) {
         id
-        score
+        value
         tag1
         tag2
         clientAddress
         createdAt
         feedbackFile {
           text
-          capability
-          skill
-          task
-          context
+          mcpTool
+          mcpPrompt
+          mcpResource
+          a2aSkills
+          a2aContextId
+          a2aTaskId
         }
       }
     }
     agentStats(id: $id) {
       totalFeedback
-      averageScore
-      scoreDistribution
+      averageFeedbackValue
+      averageValidationScore
       totalValidations
       completedValidations
       lastActivity
